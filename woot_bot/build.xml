@@ -1,4 +1,4 @@
-<project name="myproject" default="war">
+<project name="woot_bot" default="war">
 
   <!-- When you copy this template to your working directories, change the
        value of appengine.sdk accordingly.  You may also want to use Ant's
@@ -40,6 +40,7 @@
   <target name="war" depends="enhance" 
           description="Assemble the application directory">
     <mkdir dir="${war.dir}/WEB-INF"/>
+    <mkdir dir="${war.dir}/WEB-INF/lib"/>
     <copy todir="${war.dir}">
       <fileset dir="html">
         <exclude name="**/.svn/**"/>
@@ -49,6 +50,11 @@
     <copy todir="${war.dir}/WEB-INF">
       <fileset dir="src/WEB-INF">
         <include name="*.xml"/>
+      </fileset>
+    </copy>
+    <copy todir="${war.dir}/WEB-INF/lib">
+      <fileset dir="lib">
+	<include name="*.jar"/>
       </fileset>
     </copy>
     <enhance_war war="${war.dir}"/>
@@ -71,6 +77,9 @@
         <fileset dir="${appengine.sdk}/lib/shared">
           <include name="*.jar"/>
         </fileset>
+	<fileset dir="lib">
+	  <include name="*.jar"/>
+	</fileset>
       </classpath>
     </javac>
   </target>

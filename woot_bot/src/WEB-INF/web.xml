@@ -11,8 +11,17 @@
     <servlet-class>stl.hackfest.WootServlet</servlet-class>
   </servlet>
 
+  <servlet>
+    <servlet-name>WootBot</servlet-name>
+    <servlet-class>stl.hackfest.WootBot</servlet-class>
+  </servlet>
+
   <servlet-mapping>
     <servlet-name>woot</servlet-name>
     <url-pattern>/woot</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>WootBot</servlet-name>
+    <url-pattern>/_wave/robot/jsonrpc</url-pattern>
   </servlet-mapping>
 </web-app>
