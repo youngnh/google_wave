@@ -10,8 +10,6 @@ public class WootBot extends AbstractRobotServlet {
 
     private static final Logger log = Logger.getLogger(WootBot.class.getName());
 
-    private static final List<String> responses = new ArrayList<String>();
-
     @Override
     public void processEvents(RobotMessageBundle bundle) {
 	log.warning("Currently at version: " + getVersion());
@@ -58,11 +56,9 @@ public class WootBot extends AbstractRobotServlet {
 	    log.warning("Adding deals to wavelet! Today is a " + woot.getProduct());
 
 	    Blip blip = wavelet.appendBlip();
-	    responses.add(blip.getBlipId());
 	    log.warning("Blip added! " + blip.getBlipId());
-	    TextView textView = blip.getDocument();
 
-	    textView.append("Today's deal is a " + woot.getProduct() + " for " + woot.getPrice());
+	    new WootItemPrinter(blip, woot).printItem();
 	} catch(IOException e) {
 	    e.printStackTrace();
 	    log.severe("Something went horribly wrong: " + e.getMessage());
