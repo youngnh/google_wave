@@ -53,17 +53,16 @@ public class WootBot extends AbstractRobotServlet {
 
     private void addDealsToWavelet(Wavelet wavelet) {
 	try {
-	    Map<String,String> items = new Woot().getData();
+	    Woot woot = new Woot();
 
-	    log.warning("Adding deals to wavelet! Today is a " + items.get("product"));
+	    log.warning("Adding deals to wavelet! Today is a " + woot.getProduct());
 
 	    Blip blip = wavelet.appendBlip();
 	    responses.add(blip.getBlipId());
 	    log.warning("Blip added! " + blip.getBlipId());
 	    TextView textView = blip.getDocument();
-	    for(String key : items.keySet()) {
-		textView.append(key + ": " + items.get(key));
-	    }
+
+	    textView.append("Today's deal is a " + woot.getProduct() + " for " + woot.getPrice());
 	} catch(IOException e) {
 	    e.printStackTrace();
 	    log.severe("Something went horribly wrong: " + e.getMessage());
