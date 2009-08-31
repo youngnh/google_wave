@@ -5,6 +5,7 @@ import java.net.*;
 import java.util.*;
 import java.util.regex.*;
 import javax.servlet.http.*;
+import org.apache.commons.beanutils.*;
 
 public class WootServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -12,8 +13,9 @@ public class WootServlet extends HttpServlet {
 	    resp.setContentType("text/html");
 	    resp.getWriter().println("<html><body>");
 
-	    Map<String,String> items = new Woot().getData();
-	    for(String item : items.keySet()) {
+	    Woot woot = new Woot();
+	    Map items = BeanUtils.describe(woot);
+	    for(Object item : items.keySet()) {
 		resp.getWriter().println(item + ": " + items.get(item) + "<br/>");
 	    }
 

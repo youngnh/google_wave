@@ -193,7 +193,7 @@ public class Woot {
 	return this.thumbnailImage;
     }
 
-    public void setThumnailImage(URL thumbnailImage) {
+    public void setThumbnailImage(URL thumbnailImage) {
 	this.thumbnailImage = thumbnailImage;
     }
 

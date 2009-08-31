@@ -20,10 +20,10 @@ public class WootItemPrinter {
 	    textView.append("\n\n");
 	}
 
-	textView.append("Today's deal is a " + woot.getProduct() + " for " + woot.getPrice());
+	textView.append(woot.getSubtitle());
 	textView.append("\n");
 
-	textView.append(woot.getSubtitle());
+	textView.append("Today's deal is a " + woot.getProduct() + " for " + woot.getPrice());
 	textView.append("\n");
 
 	textView.append(woot.getTeaser());
@@ -42,11 +42,10 @@ public class WootItemPrinter {
 
 	if(!woot.isSoldout()) {
 	    textView.append(woot.getSoldOutPct() + "% sold out");
+	    textView.append("\n");
+	    textView.append("Get One For Yourself: " + woot.getPurchase().toString());
 	} else {
 	    textView.append("Completely Sold Out");
 	}
-	textView.append("\n");	
-
-	textView.append("Get One For Yourself: " + woot.getPurchase().toString());
     }
 }
